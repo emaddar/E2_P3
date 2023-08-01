@@ -3,6 +3,7 @@ import pandas as pd
 import missingno as msno
 
 from scipy.stats import kurtosis, skew
+import seaborn as sns
 
 import matplotlib.pyplot as plt
 
@@ -43,3 +44,42 @@ def missing_values_summary(df):
     result_sorted = result.sort_values(by='Percentage Missing %', ascending=False)
 
     return result_sorted
+
+
+
+
+def calculate_category_occurrence(df):
+    # Initialize an empty dictionary to store results
+    result_dict = {}
+    
+    # Loop through each categorical column
+    for col in df.columns:
+        value_counts = df[col].value_counts()
+        total_samples = df.shape[0]
+        
+        # Calculate the percentage occurrence of each category
+        percentage_occurrence = (value_counts / total_samples) * 100
+        
+        # Store the percentage occurrence in the result dictionary
+        result_dict[col] = percentage_occurrence
+    
+    # Convert the result dictionary to a DataFrame
+    result_df = pd.DataFrame(result_dict)
+    
+    return result_df
+
+
+def calculate_category_variables(df, threshold_min=95, threshold_max=100):
+    category_variables_list = []
+
+    for col in df.columns:
+        if df[col].dtype == 'object':  # Assuming only categorical variables are of type 'object'
+            total_count = df[col].count()
+            category_counts = df[col].value_counts()
+            category_percentages = (category_counts / total_count) * 100
+
+            # Check if any category has a percentage within the specified range
+            if any((category_percentages >= threshold_min) & (category_percentages <= threshold_max)):
+                category_variables_list.append(col)
+
+    return category_variables_list
