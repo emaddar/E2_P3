@@ -16,17 +16,17 @@
         <div class="form">
             <form action="{% url 'predict' %}" method="post">
                 {% csrf_token %}
-
-                Année de construction: <input type="number" name='Year_Built' placeholder="Quelle est l'année de construction?"><br>
-                Surface de la cave: <input type="number" name='Total_Bsmt_SF' placeholder="Surface de la cave en m2"><br>
-                Surface du premier étage: <input type="number" name='1st_Flr_SF' placeholder="Surface du 1er étage en m2"><br>
-                Surface habitable au sol: <input type="number" name='Gr_Liv_Area' placeholder="Surface habitable en m2"><br>
-                Surface du garage: <input type="number" name='Garage_Area' placeholder="Surface du garage en m2"><br>
-                Qualité générale des finitions et des matérieux: <input type="number" name='Overall_Qual' placeholder="Qualité entre 1 (très mauvais) et 10 (Excellent)"><br>
-                Nombre de salle de bain: <input type="number" name='Full_Bath' placeholder="Nombre de salles de bain"><br>
-                Qualité des matériaux extérieurs: <input type="text" name='Exter_Qual' placeholder=" Ex:Excellent, Gd:Good, TA:Average, Fa:Fair, Po:Poor"><br>
-                Qualité des matérieux de la cuisine: <input type="text" name='Kitchen_Qual' placeholder="Ex:Excellent, Gd:Good, TA:Average, Fa:Fair, Po:Poor"><br>
+                Surface Totale: <input type="number" name='TotalSF' placeholder="Quelle est la surface total?"><br>
+                Age: <input type="number" name='Age' placeholder="L'âge du bien immobilier"><br>
                 Quartier: <input type="text" name='Neighborhood' placeholder="Nom du quartier de Ames"><br>
+                Qualité générale des finitions et des matérieux: <input type="number" name='Overall Qual' placeholder="Qualité entre 1 (très mauvais) et 10 (Excellent)"><br>
+                Évalue la hauteur du sous-sol: <input type="text" name='Bsmt Qual' placeholder=" Ex	Excellent (100+ inches)	, Gd	Good (90-99 inches), TA	Typical (80-89 inches), Fa	Fair (70-79 inches), Po	Poor (<70 inches), NA	No Basement"><br>
+                Qualité des matériaux extérieurs: <input type="text" name='Exter Qual' placeholder=" Ex:Excellent, Gd:Good, TA:Average, Fa:Fair, Po:Poor"><br>
+                Qualité de la cuisine: <input type="text" name='Kitchen Qual' placeholder="Ex: Excellent, Gd	Good, TA	Typical/Average, Fa	Fair, Po	Poor"><br>
+                Taille du garage en capacité de voitures: <input type="number" name='Garage Cars' placeholder="Nombre de voitures possible dans le garage"><br>
+                Finition intérieure du garage: <input type="text" name='Garage Finish' placeholder=" Fin:Finished, RFn:Rough Finished, Unf:Unfinished, NA:No Garage"><br>
+                Nombre de salle de bain: <input type="number" name='TotalBathrooms' placeholder="Nombre de salles de bain"><br>
+
                 <input type="submit" value="predict" class="submit">
             </form>
             <p> La maison vaut: {{data}}</p>
